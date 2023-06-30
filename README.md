@@ -1,6 +1,8 @@
 # Aplicação Java WEB em Model-View-Controller
 
-Este projeto consiste em uma aplicação Java para web que segue a arquitetura MVC (Model-View-Controller). A aplicação permite o gerenciamento de informações relacionadas a carros e seus proprietários, com recursos de inserção, alteração e remoção de dados. A camada de visualização é implementada em XHTML, enquanto o Model e o Controller são implementados em Java.
+Este projeto consiste em uma aplicação Java para web que segue a arquitetura MVC (Model-View-Controller), assim a camada de visualização é implementada em XHTML, enquanto o Model e o Controller são implementados em Java. A aplicação permite o gerenciamento de informações relacionadas a carros e seus proprietários, com recursos de inserção, alteração e remoção de dados. Tendo em vista, que inclue as seguintes entidades:
+- Proprietario(id, nome, cpf) 
+- Carro(id, placa, marca, modelo, proprietarioId)     
 
 ## Versões do Projeto
 
