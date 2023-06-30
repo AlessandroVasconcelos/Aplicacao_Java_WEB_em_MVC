@@ -42,7 +42,7 @@ Execução da aplicação:
 
 ## Tecnologias Utilizadas
 
-- <a href ="https://netbeans.apache.org/download/nb13/nb13.html"><img src="https://img.shields.io/badge/IDE:%20apache%20netbeans 13.0-1B6AC6?style=for-the-badge&logo=apache%20netbeans%20IDE&logoColor=white"></a>
+- <a href ="https://netbeans.apache.org/download/nb13/nb13.html"><img src="https://img.shields.io/badge/IDE:%20apache%20netbeans 13-1B6AC6?style=for-the-badge&logo=apache%20netbeans%20IDE&logoColor=white"></a>
 - <a href ="https://www.oracle.com/middleware/technologies/glassfish-downloads.html"><img src="https://img.shields.io/badge/Servidor%20de%20Aplica%C3%A7%C3%A3o:%20GlassFish%20Server%205.1.0-5B0AC6?style=for-the-badge&logo=apache%20netbeans%20IDE&logoColor=white"></a>
-- <a href ="https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/8.2.0/xampp-windows-x64-8.2.0-0-VS16-installer.exe/download"><img src="https://img.shields.io/badge/Servidor%20de%20Banco%20de%20Dados:%20XAMPP-600?style=for-the-badge&logo=xampp"></a>
+- <a href ="https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/8.2.0/xampp-windows-x64-8.2.0-0-VS16-installer.exe/download"><img src="https://img.shields.io/badge/Servidor%20de%20Banco%20de%20Dados:%20XAMPP%208.2.0-600?style=for-the-badge&logo=xampp"></a>
 - <a href ="https://www.oracle.com/br/java/technologies/javase/javase8-archive-downloads.html"><img src="https://img.shields.io/badge/Linguagem:%20Java%208-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white"></a>
