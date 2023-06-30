@@ -18,25 +18,25 @@ Nesta versão, os dados são armazenados em um banco de dados. O projeto inclui 
 
 Para executar o Projeto 02, siga os passos a seguir:
 
-1. Preparação do Banco de Dados "veiculos":
-   a. Execute o XAMPP Control Panel e inicie como administrador o serviço do MySQL.
-   b. Crie um novo banco de dados chamado "producao".
-   c. Importe o arquivo "veiculos.sql" para o banco de dados criado.
-   d. Verifique se o banco de dados foi criado corretamente com suas respectivas tabelas.
+Preparação do Banco de Dados "veiculos":
+1. Execute o XAMPP Control Panel e inicie como administrador o serviço do MySQL.
+2. Crie um novo banco de dados chamado "producao".
+3. Importe o arquivo "veiculos.sql" para o banco de dados criado.
+4. Verifique se o banco de dados foi criado corretamente com suas respectivas tabelas.
 
-2. Configuração da conexão do NetBeans com o Banco de Dados:
-   a. Baixe o arquivo "mysql-connector-java-8.0.11.jar".
-   b. No NetBeans, acesse a aba "Services".
-   c. Clique com o botão direito em "Databases" e selecione "New Connection".
-   d. Escolha "MySQL (Connector/J Driver)".
-   e. Adicione o arquivo do connector 8 que você baixou e clique em "Next".
-   f. No campo "Database", insira "veiculos" e depois clique em "Next".
-   
-3. Execução da aplicação:
-   a. No NetBeans, abra o projeto "Projeto_02_Banco_de_Dados".
-   b. Clique com o botão direito do mouse no projeto e vá em "Propriedades".
-   c. Em "Run", confirme que o servidor é o GlassFish Server e clique em "OK".
-   d. Em "Web Pages", clique com o botão direito do mouse em "index.xhtml" e selecione "Run File".
+Configuração da conexão do NetBeans com o Banco de Dados:
+1. Baixe o arquivo "mysql-connector-java-8.0.11.jar".
+2. No NetBeans, acesse a aba "Services".
+3. Clique com o botão direito em "Databases" e selecione "New Connection".
+4. Escolha "MySQL (Connector/J Driver)".
+5. Adicione o arquivo do connector 8 que você baixou e clique em "Next".
+6. No campo "Database", insira "veiculos" e depois clique em "Next".
+
+Execução da aplicação:
+1. No NetBeans, abra o projeto "Projeto_02_Banco_de_Dados".
+2. Clique com o botão direito do mouse no projeto e vá em "Propriedades".
+3. Em "Run", confirme que o servidor é o GlassFish Server e clique em "OK".
+4. Em "Web Pages", clique com o botão direito do mouse em "index.xhtml" e selecione "Run File".
 
 ## Tecnologias Utilizadas
 
