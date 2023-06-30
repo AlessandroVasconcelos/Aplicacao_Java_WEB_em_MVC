@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProprietarioEditDlg" widgetVar="ProprietarioEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditProprietarioTitle}">
+            <h:form id="ProprietarioEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{proprietarioController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditProprietarioLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{proprietarioController.selected.id}" title="#{bundle.EditProprietarioTitle_id}" required="true" requiredMessage="#{bundle.EditProprietarioRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditProprietarioLabel_nome}" for="nome" />
+                        <p:inputText id="nome" value="#{proprietarioController.selected.nome}" title="#{bundle.EditProprietarioTitle_nome}" required="true" requiredMessage="#{bundle.EditProprietarioRequiredMessage_nome}"/>
+                        <p:outputLabel value="#{bundle.EditProprietarioLabel_cpf}" for="cpf" />
+                        <p:inputText id="cpf" value="#{proprietarioController.selected.cpf}" title="#{bundle.EditProprietarioTitle_cpf}" required="true" requiredMessage="#{bundle.EditProprietarioRequiredMessage_cpf}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{proprietarioController.update}" value="#{bundle.Save}" update="display,:ProprietarioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProprietarioEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProprietarioEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="titulo">
+            <p:outputPanel>Cadastro de Carros</p:outputPanel>
+        </ui:define>
+
+        <ui:define name="conteudo">
+            <h:form id="inicio">
+                <fieldset>
+                    <legend>Dados Carro:</legend>
+
+
+                    <p:messages id="messages" />
+
+
+
+                    <p:panelGrid columns="2" id="painel1"  >
+
+                        <p:outputLabel value="Placa:" for="carro-placa" />
+                        <p:inputText id="carro-placa" value="#{carroController.carro.placa}"  disabled="#{carroController.novoHabilitado()}"
+                                     required="true" requiredMessage="Placa obrigatória."
+                                     validatorMessage="número de caracteres não pode ser superior a 8">
+                            <f:validateLength maximum="8" />
+                            <f:ajax event="blur" render="messages" />
+                        </p:inputText>
+                        
+                        <p:outputLabel value="Marca:" for="carro-marca" />
+                        <p:inputText id="carro-marca" value="#{carroController.carro.marca}"  disabled="#{carroController.novoHabilitado()}"
+                                     required="true" requiredMessage="Marca obrigatória."
+                                     validatorMessage="número de caracteres não pode ser superior a 20">
+                            <f:validateLength maximum="20" />
+                            <f:ajax event="blur" render="messages" />
+                        </p:inputText>
+                        
+                        <p:outputLabel value="Modelo:" for="carro-modelo" />
+                        <p:inputText id="carro-modelo" value="#{carroController.carro.modelo}"  disabled="#{carroController.novoHabilitado()}"
+                                     required="true" requiredMessage="Modelo obrigatório."
+                                     validatorMessage="número de caracteres não pode ser superior a 20">
+                            <f:validateLength maximum="20" />
+                            <f:ajax event="blur" render="messages" />
+                        </p:inputText>
+                        
+                        <p:outputLabel value="Proprietário:" for="proprietario" />
+                        <p:selectOneMenu value="#{carroController.proprietario}" id="proprietario" required="true" requiredMessage="Escolha um proprietario" disabled="#{carroController.novoHabilitado()}">
+                            <f:selectItem itemLabel="- Selecione -" itemValue="#{null}"/>
+                            <f:selectItems value="#{proprietarioController.proprietarios}" var="proprietario" itemLabel="#{proprietario.nome}" />
+                        </p:selectOneMenu>
+
+       
+
+                    </p:panelGrid>
+
+
+
+                </fieldset>
+
+
+
+
+
+                <p:panelGrid columns="3"  >
+
+                    <p:commandButton disabled="#{!carroController.novoHabilitado()}" value="Novo" actionListener="#{carroController.prepareCreate()}"  update="@form" />
+
+                    <p:commandButton  disabled="#{carroController.novoHabilitado()}" value="Gravar Carro" action="#{carroController.gravar}" process="@form" update="@form  :formTabelaCarro" />
+
+                    <p:commandButton disabled="#{carroController.novoHabilitado()}" value="Cancelar" immediate="true" action="#{carroController.cancelar}"  update=":inicio" />
+                </p:panelGrid>
+
+            </h:form>
+            <h:form id="formTabelaCarro">
+                <p:dataTable value="#{carroController.carros}" var="carro" id="tabelaCarro"  widgetVar="carroTable"
+                             emptyMessage="No cars found with given criteria" >
+                    <p:column >
+                        <f:facet name="header">Id: </f:facet>
+                        <h:outputText value="#{carro.id}" />
+                    </p:column>
+                    <p:column >
+                        <f:facet name="header">Placa: </f:facet>
+                        <h:outputText value="#{carro.placa}" />
+                    </p:column>
+                    <p:column >
+                        <f:facet name="header">Marca: </f:facet>
+                        <h:outputText value="#{carro.marca}" />
+                    </p:column>
+                    <p:column >
+                        <f:facet name="header">Modelo: </f:facet>
+                        <h:outputText value="#{carro.modelo}" />
+                    </p:column>
+                    <p:column >
+                        <f:facet name="header">ID proprietário: </f:facet>
+                        <h:outputText value="#{carro.proprietarioId.id}" />
+                    </p:column>
+                    <p:column >
+                        <f:facet name="header">Nome Proprietário: </f:facet>
+                        <h:outputText value="#{carro.proprietarioId.nome}" />
+                    </p:column>
+                    
+                    <p:column>
+                        <f:facet name="header">Alterar</f:facet>
+                        <h:commandLink value="Alterar" action="#{carroController.carregar(carro)}"    />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Remover</f:facet>
+                        <p:commandLink value="Remover" action="#{carroController.remover(carro)}"  update="tabelaCarro">
+                            <p:confirm header="Apagar" message="Apagar Carro?" icon="ui-icon-alert"/>
+                        </p:commandLink>
+                        <p:confirmDialog global="true" >
+                            <p:commandButton value="Sim" type ="button" styleClass="ui-confirmdialog-yes"/>
+                            <p:commandButton value="Nao" type="button" styleClass="ui-confirmdialog-no"/>
+                        </p:confirmDialog>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+
+
+        </ui:define>
+    </ui:composition>
+
+</html>

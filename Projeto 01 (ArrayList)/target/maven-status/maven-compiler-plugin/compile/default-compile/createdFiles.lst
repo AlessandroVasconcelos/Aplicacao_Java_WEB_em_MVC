@@ -1,0 +1,8 @@
+modelo\Proprietario.class
+bean\PropBean.class
+validator\CPFConverter.class
+bean\PropBean$PropBeanConverter.class
+validator\CpfValidator.class
+bean\CarroBean$ProprietarioBeanConverter.class
+modelo\Carro.class
+bean\CarroBean.class

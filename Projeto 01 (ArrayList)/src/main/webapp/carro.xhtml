@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 	
+      xmlns:h="http://java.sun.com/jsf/html"	
+      xmlns:f="http://java.sun.com/jsf/core" 	 
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="_template.xhtml">
+
+        <ui:define name="titulo">
+            Gerenciamento de Carros
+        </ui:define>
+
+        <ui:define name="conteudo">
+            <div>
+                <h:form  id="inicio-car">
+
+                    <h3>Cadastrar Carro</h3>
+                    <h:panelGrid columns ="2" id="painel2">
+
+                        <p:outputLabel value ="Placa :" for ="campo-placa" />
+                        <p:inputText value ="#{carroBean.carro.placa}" id="campo-placa"   styleClass="edit"
+                                     required="true" requiredMessage="Placa obrigatória"
+                                     validatorMessage="Placa tem que ter 7 caracteres">
+                            <!-- <f:validateLength minimum="7"/> -->
+                            <f:ajax event="blur" render="messages" />
+                        </p:inputText>
+
+                        <p:outputLabel value ="Marca :" for ="campo-marca" />
+                        <p:inputText value ="#{carroBean.carro.marca}" id="campo-marca"   styleClass="edit"
+                                     required="true" requiredMessage="Marca obrigatória">
+                            <f:ajax event="blur" render="messages" />
+                        </p:inputText>
+
+                        <p:outputLabel value ="Modelo :" for ="campo-modelo" />
+                        <p:inputText value ="#{carroBean.carro.modelo}" id="campo-modelo"   styleClass="edit"
+                                     required="true" requiredMessage="Modelo obrigatório">
+                            <f:ajax event="blur" render="messages" />
+                        </p:inputText>
+
+                        <h:outputLabel value ="Proprietário: "  />
+                        <p:selectOneMenu id="campo-proprietario" value="#{carroBean.carro.proprietarioId}" style="width:190px"  
+                                         styleClass="edit" required="true" requiredMessage="Proprietário obrigatório">
+                            <f:selectItem itemLabel="Selecione um proprietário" itemValue="" />
+                            <f:selectItems value="#{propBean.proprietarios}" var="proprietario"
+                                           itemValue="#{proprietario.id}" itemLabel="#{proprietario.nome}" />
+                            <f:ajax event="blur" render="messages" />
+                        </p:selectOneMenu>
+
+                    </h:panelGrid >
+                    <p:commandButton id="btsalvarcar" value ="#{carroBean.nomeBotao()}"  action="#{carroBean.adicionarCarro}" 
+                                     process="@form" update="@form :tabela-car" />
+                    <p:commandButton id="btcancelarcar" value ="Cancelar" action ="#{carroBean.cancelarCar}" 
+                                     styleClass="botoes" process="@form" update="@form" disabled="#{carroBean.botaoCancelarCar()}"/>
+                </h:form>
+
+                <h:form  id="tabela-car">
+                    <p:dataTable value ="#{carroBean.carros}" var ="carro" emptyMessage="Nenhum carro cadastrado.">
+
+                        <f:facet name ="header">Carros Cadastrados </f:facet>
+
+                        <p:column>
+                            <f:facet name ="header">ID</f:facet>
+                                #{carro.id}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name ="header">Placa</f:facet>
+                                #{carro.placa}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name ="header">Marca</f:facet>
+                                #{carro.marca}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name ="header">Modelo</f:facet>
+                                #{carro.modelo}
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name ="header">ID Proprietário</f:facet>
+                                #{carro.proprietarioId}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name ="header">Proprietário</f:facet>
+                                #{propBean.getProprietarioNome(carro.proprietarioId)}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name ="header">Remover </f:facet>
+                            <p:commandButton value ="Remover" actionListener="#{carroBean.removerCarro(carro)}"   
+                                             process="@form"    update="@form"   styleClass="botoes" class="botoes">
+                                <p:confirm header="Apagar" message="Apagar Carro?" icon="ui-icon-alert"/>
+                            </p:commandButton>
+
+                            <p:confirmDialog global="true" >
+                                <p:commandButton value="Sim" type ="button" styleClass="ui-confirmdialog-yes"/>
+                                <p:commandButton value="Nao" type ="button" styleClass="ui-confirmdialog-no"/>
+                            </p:confirmDialog>
+
+                        </p:column>
+                        <p:column>
+                            <f:facet name ="header">Alterar</f:facet>
+                            <p:commandButton value ="Alterar" actionListener="#{carroBean.carregarCar(carro)}"   
+                                             process="@form"  update=":inicio-car"  styleClass="botoes"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </div>
+
+        </ui:define>
+    </ui:composition>
+</html>

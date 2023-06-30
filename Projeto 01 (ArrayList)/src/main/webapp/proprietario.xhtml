@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 	
+      xmlns:h="http://java.sun.com/jsf/html"	
+      xmlns:f="http://java.sun.com/jsf/core" 	 
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="_template.xhtml">
+
+        <ui:define name="titulo">
+            Gerenciamento de Proprietários
+        </ui:define>
+
+        <ui:define name="conteudo">
+            <div>
+
+                <h:form  id="inicio-prop" >
+
+
+                    <h3>Cadastrar Proprietário</h3>
+                    <h:panelGrid columns ="2" id="painel1">
+
+                        <p:outputLabel value ="Nome :" for ="campo-nome" />
+                        <p:inputText value ="#{propBean.proprietario.nome}" id="campo-nome"   styleClass="edit"
+                                     required="true" requiredMessage="Nome obrigatório"
+                                     validatorMessage="Nome tem que ter de 3 a 40 caracteres">
+                            <f:validateLength minimum="3" maximum="40"/>
+                            <f:ajax event="blur" render="messages" />
+                        </p:inputText>
+
+
+                        <p:outputLabel value ="CPF :" for ="campo-cpf" />
+                        <p:inputMask value ="#{propBean.proprietario.cpf}" id="campo-cpf"  styleClass="edit"
+                                     mask="999.999.999-99"
+                                     required="true" requiredMessage="CPF obrigatório">
+                            <f:validator validatorId="CpfValidator" />
+                            <f:ajax event="blur" render="messages" />
+                        </p:inputMask>
+                    </h:panelGrid >             
+                    <p:commandButton id="btsalvarprop" value ="#{propBean.nomeBotao()}"  action="#{propBean.adicionarProprietario}" 
+                                     process="@form" update="@form :tabela-prop" />
+                    <p:commandButton id="btcancelarprop" value ="Cancelar" action ="#{propBean.cancelarProp}" 
+                                     styleClass="botoes" process="@form" update="@form" disabled="#{propBean.botaoCancelarProp()}"/>
+                </h:form>
+
+                <h:form  id="tabela-prop">
+                    <p:dataTable value ="#{propBean.proprietarios}" var ="proprietario" emptyMessage="Nenhum proprietário cadastrado.">
+
+                        <f:facet name ="header">Proprietários Cadastrados </f:facet>
+
+                        <p:column>
+                            <f:facet name ="header">ID</f:facet>
+                                #{proprietario.id}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name ="header">Nome</f:facet>
+                                #{proprietario.nome}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name ="header">CPF </f:facet>
+                                #{proprietario.cpf}
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name ="header">Remover </f:facet>
+                            <p:commandButton value ="Remover" actionListener="#{propBean.removerProprietario(proprietario)}"   
+                                             process="@form"    update="@form"   styleClass="botoes" class="botoes">
+                                <p:confirm header="Apagar" message="Apagar Proprietario?" icon="ui-icon-alert"/>
+                            </p:commandButton>
+
+                            <p:confirmDialog global="true" >
+                                <p:commandButton value="Sim" type ="button" styleClass="ui-confirmdialog-yes"/>
+                                <p:commandButton value="Nao" type ="button" styleClass="ui-confirmdialog-no"/>
+                            </p:confirmDialog>
+
+                        </p:column>
+                        <p:column>
+                            <f:facet name ="header">Alterar</f:facet>
+                            <p:commandButton value ="Alterar" actionListener="#{propBean.carregarProp(proprietario)}"   
+                                             process="@form"  update=":inicio-prop"  styleClass="botoes"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

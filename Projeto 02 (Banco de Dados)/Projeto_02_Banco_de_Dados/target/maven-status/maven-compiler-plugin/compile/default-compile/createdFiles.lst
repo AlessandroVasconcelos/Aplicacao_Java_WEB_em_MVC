@@ -1,0 +1,15 @@
+modelo\Proprietario.class
+controller\CarroController$CarroControllerConverter.class
+facade\CarroFacade.class
+controller\CarroController.class
+validator\CpfValidator.class
+modelo\Carro.class
+modelo\Proprietario_.class
+controller\ProprietarioController$ProprietarioControllerConverter.class
+validator\CPFConverter.class
+controller\ProprietarioController.class
+facade\ProprietarioFacade.class
+facade\AbstractFacade.class
+controller\util\JsfUtil.class
+modelo\Carro_.class
+controller\util\JsfUtil$PersistAction.class

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="titulo">
+            <p:outputPanel>Cadastro de Proprietários</p:outputPanel>
+        </ui:define>
+
+        <ui:define name="conteudo">
+            <h:form id="inicio">
+                <fieldset>
+                    <legend>Dados Proprietário:</legend>
+
+
+                    <p:messages id="messages" />
+
+
+
+                    <p:panelGrid columns="2" id="painel1"  >
+
+                        <p:outputLabel value="Nome:" for="proprietario-nome" />
+                        <p:inputText id="proprietario-nome" value="#{proprietarioController.proprietario.nome}"  disabled="#{proprietarioController.novoHabilitado()}"
+                                     required="true" requiredMessage="Nome obrigatório."
+                                     validatorMessage="número de caracteres não pode ser superior a 40">
+                            <f:validateLength maximum="40" />
+                            <f:ajax event="blur" render="messages" />
+                        </p:inputText>
+                        
+                        <p:outputLabel value="CPF:" for="proprietario-cpf" />
+                        <p:inputMask id="proprietario-cpf" value="#{proprietarioController.proprietario.cpf}"  
+                                     disabled="#{proprietarioController.novoHabilitado()}"
+                                     mask="999.999.999-99"
+                                     required="true" requiredMessage="CPF obrigatório.">
+                            <f:validator validatorId="CpfValidator" />
+                            <f:ajax event="blur" render="messages" />
+                        </p:inputMask>
+
+                    </p:panelGrid>
+
+
+
+                </fieldset>
+
+
+
+
+
+                <p:panelGrid columns="3"  >
+
+                    <p:commandButton disabled="#{!proprietarioController.novoHabilitado()}" value="Novo" actionListener="#{proprietarioController.prepareCreate()}"  update="@form" />
+
+                    <p:commandButton  disabled="#{proprietarioController.novoHabilitado()}" value="Gravar Proprietario" action="#{proprietarioController.gravar}" process="@form" update="@form  :formTabelaProprietario" />
+
+                    <p:commandButton disabled="#{proprietarioController.novoHabilitado()}" value="Cancelar" immediate="true" action="#{proprietarioController.cancelar}"  update=":inicio" />
+                </p:panelGrid>
+
+            </h:form>
+            <h:form id="formTabelaProprietario">
+                <p:dataTable value="#{proprietarioController.proprietarios}" var="proprietario" id="tabelaProprietario"  widgetVar="proprietarioTable"
+                             emptyMessage="No cars found with given criteria" >
+                    <p:column >
+                        <f:facet name="header">Id: </f:facet>
+                        <h:outputText value="#{proprietario.id}" />
+                    </p:column>
+                    <p:column >
+                        <f:facet name="header">Nome: </f:facet>
+                        <h:outputText value="#{proprietario.nome}" />
+                    </p:column>
+                    <p:column >
+                        <f:facet name="header">CPF: </f:facet>
+                        <h:outputText value="#{proprietario.cpf}" />
+                    </p:column>
+                    
+                    <p:column>
+                        <f:facet name="header">Alterar</f:facet>
+                        <h:commandLink value="Alterar" action="#{proprietarioController.carregar(proprietario)}"    />
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Remover</f:facet>
+                        <p:commandLink value="Remover" action="#{proprietarioController.remover(proprietario)}"  update="tabelaProprietario">
+                            <p:confirm header="Apagar" message="Apagar Proprietario?" icon="ui-icon-alert"/>
+                        </p:commandLink>
+                        <p:confirmDialog global="true" >
+                            <p:commandButton value="Sim" type ="button" styleClass="ui-confirmdialog-yes"/>
+                            <p:commandButton value="Nao" type="button" styleClass="ui-confirmdialog-no"/>
+                        </p:confirmDialog>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+
+
+        </ui:define>
+    </ui:composition>
+
+</html>
