@@ -40,6 +40,9 @@ Execução da aplicação:
 3. Em "Run", confirme que o servidor é o GlassFish Server e clique em "OK".
 4. Em "Web Pages", clique com o botão direito do mouse em "index.xhtml" e selecione "Run File".
 
+## Professor/Orientador:
+Plácido Marinho Dias.
+
 ## Tecnologias Utilizadas
 
 - <a href ="https://netbeans.apache.org/download/nb13/nb13.html"><img src="https://img.shields.io/badge/IDE:%20apache%20netbeans 13-1B6AC6?style=for-the-badge&logo=apache%20netbeans%20IDE&logoColor=white"></a>
