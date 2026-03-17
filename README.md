@@ -43,7 +43,7 @@ Execução da aplicação:
 ## Professor/Orientador:
 Plácido Marinho Dias.
 
-## 🛠️ Tecnologias Utilizadas:
+## Tecnologias Utilizadas:
 
 - <a href ="https://netbeans.apache.org/download/nb13/nb13.html"><img src="https://img.shields.io/badge/IDE:%20apache%20netbeans 13-1B6AC6?style=for-the-badge&logo=apache%20netbeans%20IDE&logoColor=white"></a>
 - <a href ="https://www.oracle.com/middleware/technologies/glassfish-downloads.html"><img src="https://img.shields.io/badge/Servidor%20de%20Aplica%C3%A7%C3%A3o:%20GlassFish%20Server%205.1.0-5B0AC6?style=for-the-badge&logo=apache%20netbeans%20IDE&logoColor=white"></a>
