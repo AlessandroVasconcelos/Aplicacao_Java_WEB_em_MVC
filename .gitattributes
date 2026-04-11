@@ -1,2 +1,2 @@
 *.html linguist-detectable=false
-*.js linguist-language=java
+*.java linguist-detectable=true
