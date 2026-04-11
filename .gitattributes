@@ -1,4 +1,7 @@
-*.html linguist-detectable=false
-*.css linguist-detectable=false
-*.js linguist-detectable=false
+# Tratar arquivos de web como se fossem documentação (isso os remove da estatística)
+*.html linguist-documentation
+*.css linguist-documentation
+*.js linguist-documentation
+
+# Forçar o Java como linguagem principal
 *.java linguist-detectable=true
